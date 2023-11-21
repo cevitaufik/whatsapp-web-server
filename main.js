@@ -1,5 +1,4 @@
-const { Client, LocalAuth  } = require('whatsapp-web.js');
-const qrcode = require('qrcode-terminal');
+const whatsapp = require('./app/whatsapp.js')
 const express = require('express')
 const bodyParser = require('body-parser')
 const config = require('./utils/config.js')
@@ -10,33 +9,9 @@ const app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(auth)
-
-const client = new Client({
-  authStrategy: new LocalAuth()
-})
-
-client.on('qr', (qr) => {
-    console.log('QR RECEIVED', qr)
-    qrcode.generate(qr, {small: true})
-})
-
-client.on('ready', () => {
-    console.log('Client is ready!')
-})
-
-client.on('message', message => {
-	console.log(message.body)
-	console.log(message)
-})
-
-client.on('message', message => {
-	if(message.body === '!ping') {
-		message.reply('pong')
-	}
-})
  
 app.get('/', (req, res) => {
-  res.send('oke')
+  res.send('Server is running')
 })
 
 app.post('/send', (req, res) => {
@@ -45,18 +20,21 @@ app.post('/send', (req, res) => {
   const number = req.body.number
   const message = req.body.message
 
-  client.sendMessage(`${number}@c.us`, message)
+  if (!number && !message) {
+    return res
+      .status(400)
+      .send({ message: 'nomor dan pesan tidak boleh kosong' })
+  }
 
-  res.send({
-    status: true,
-    message: 'success'
-  })
+  whatsapp.sendMessage(`${number}@c.us`, message)
+
+  res.status(200).send({ message: 'success' })
 })
 
-client
+whatsapp
   .initialize()
   .then(() => {
     app.listen(config.port, () => {
-      console.log(`Example app listening on port ${config.port}`)
+      console.log(`Server running on [http://127.0.0.1:${config.port}]`)
     })
   })
