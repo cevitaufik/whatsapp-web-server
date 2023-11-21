@@ -16,7 +16,6 @@ whatsapp.on('ready', () => {
 
 whatsapp.on('message', message => {
     console.log(message.body)
-    console.log(message)
 })
 
 whatsapp.on('message', message => {
