@@ -1,5 +1,8 @@
 const { Client, LocalAuth } = require('whatsapp-web.js')
 const qrcode = require('qrcode-terminal')
+const moment = require('moment')
+
+moment.locale('id')
 
 const whatsapp = new Client({
     authStrategy: new LocalAuth()
@@ -16,6 +19,7 @@ whatsapp.on('ready', () => {
 
 whatsapp.on('message', message => {
     console.log(message.body)
+    console.log(moment().format('D MMMM YYYY H:mm:ss'))
 })
 
 whatsapp.on('message', message => {

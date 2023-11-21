@@ -3,6 +3,9 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const config = require('./utils/config.js')
 const auth = require('./middleware/auth.js')
+const moment = require('moment')
+
+moment.locale('id')
 
 const app = express()
 
@@ -16,6 +19,7 @@ app.get('/', (req, res) => {
 
 app.post('/send', (req, res) => {
   console.log(req.body)
+  console.log(moment().format('D MMMM YYYY H:mm:ss'))
 
   const number = req.body.number
   const message = req.body.message
