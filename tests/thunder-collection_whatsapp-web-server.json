@@ -1,0 +1,28 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "whatsapp-web-server",
+    "dateExported": "2023-11-21T02:28:57.178Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "b813fcb8-3fed-48f8-8bad-6ce1a6ce81f2",
+            "colId": "3ae20bba-2365-4efe-9ec8-8ca950388beb",
+            "containerId": "",
+            "name": "index",
+            "url": "http://localhost:3001/",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2023-11-21T02:09:19.956Z",
+            "modified": "2023-11-21T02:22:32.668Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "uOCu6lY5kPl1u0dd9DEc7QIbCQOkJUJfGJUVzL8J63R8w05GjLHjA6bAwZSdTJrOi"
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
