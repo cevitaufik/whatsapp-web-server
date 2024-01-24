@@ -3,9 +3,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const config = require('./utils/config.js')
 const auth = require('./middleware/auth.js')
-const moment = require('moment')
-
-moment.locale('id')
+const RequestService = require('./app/request-service.js')
+const ResponseService = require('./app/response-service.js')
 
 const app = express()
 
@@ -18,21 +17,29 @@ app.get('/', (req, res) => {
 })
 
 app.post('/send', (req, res) => {
-  console.log(req.body)
-  console.log(moment().format('D MMMM YYYY H:mm:ss'))
+  const request = new RequestService(req, false)
+  const response = new ResponseService(res)
 
-  const number = req.body.number
-  const message = req.body.message
-
-  if (!number && !message) {
-    return res
-      .status(400)
-      .send({ message: 'nomor dan pesan tidak boleh kosong' })
+  if (request.requestIsInvalid()) {
+    return response.badRequest('nomor dan pesan tidak boleh kosong')
   }
 
-  whatsapp.sendMessage(`${number}@c.us`, message)
+  whatsapp.sendMessage(request.number, request.message)
 
-  res.status(200).send({ message: 'success' })
+  response.success()
+})
+
+app.post('/send/group', (req, res) => {
+  const request = new RequestService(req, true)
+  const response = new ResponseService(res)
+
+  if (request.requestIsInvalid()) {
+    return response.badRequest('nomor dan pesan tidak boleh kosong')
+  }
+
+  whatsapp.sendMessage(request.number, request.message)
+
+  response.success()
 })
 
 whatsapp

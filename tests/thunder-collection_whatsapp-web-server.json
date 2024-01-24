@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "whatsapp-web-server",
-    "dateExported": "2023-11-21T02:28:57.178Z",
+    "dateExported": "2024-01-24T03:55:30.611Z",
     "version": "1.1",
     "folders": [],
     "requests": [
@@ -22,6 +22,54 @@
                 }
             ],
             "params": [],
+            "tests": []
+        },
+        {
+            "_id": "0bb43a93-2726-4e96-a45d-3dfb21ac2870",
+            "colId": "3ae20bba-2365-4efe-9ec8-8ca950388beb",
+            "containerId": "",
+            "name": "send",
+            "url": "http://localhost:3001/send",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-01-24T02:18:19.407Z",
+            "modified": "2024-01-24T02:20:45.457Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "uOCu6lY5kPl1u0dd9DEc7QIbCQOkJUJfGJUVzL8J63R8w05GjLHjA6bAwZSdTJrOi"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"number\": \"6281221111955\",\n  \"message\": \"halloo\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "7afca4d7-9d3a-43d2-b211-cf718be0cefa",
+            "colId": "3ae20bba-2365-4efe-9ec8-8ca950388beb",
+            "containerId": "",
+            "name": "send group",
+            "url": "http://localhost:3001/send/group",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2024-01-24T02:34:39.725Z",
+            "modified": "2024-01-24T03:20:54.850Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "uOCu6lY5kPl1u0dd9DEc7QIbCQOkJUJfGJUVzL8J63R8w05GjLHjA6bAwZSdTJrOi"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"number\": \"120363159883893980\",\n  \"message\": \"pesan grup\"\n}",
+                "form": []
+            },
             "tests": []
         }
     ]

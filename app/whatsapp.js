@@ -18,8 +18,12 @@ whatsapp.on('ready', () => {
 })
 
 whatsapp.on('message', message => {
-    console.log(message.body)
-    console.log(moment().format('D MMMM YYYY H:mm:ss'))
+    console.log({
+        body: message.body,
+        type: message.type,
+        from: message.from,
+        timestamp: moment.unix(message.timestamp).format('D MMMM YYYY H:mm:ss')
+    })
 })
 
 whatsapp.on('message', message => {
