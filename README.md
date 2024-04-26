@@ -1,5 +1,7 @@
 # whatsapp-web-server
 
+Simple whatsapp web server using whatsapp-web.js
+
 To install dependencies:
 
 ```bash
